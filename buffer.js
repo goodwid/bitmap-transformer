@@ -17,15 +17,21 @@ function Bitmap (buffer) {
 }
 
 Bitmap.prototype.modPalette = function() {
-  console.log('got here');
+  console.log(this.bufferData);
+  this.bufferData[7] = 0xff;
+  console.log(this.bufferData);
+
   for (var i = 54; i < this.PixelDataOffset; i += 4) {
-    transform.invertDword(i);
+    for (var ji = i; ji < i + 3 ; ji++) {
+      this.bufferData[ji] = 0xff - this.bufferData[ji];
+    }
   }
 };
 
 fs.readFile(inFile, (err, buffer) => {
   const bitmap = new Bitmap(buffer);
   // showData(bitmap);
+  console.log('got here');
   bitmap.modPalette();
   fs.writeFile(outFile, bitmap.bufferData, (err) => {
     if (err) console.log(err);

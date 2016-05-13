@@ -3,11 +3,11 @@
 var transform = {};
 
 // accepts dword, returns inverted dword
-transform.invertDword = function (offset) {
-  for (var i = offset; i < offset + 3 ; i++) {
-    console.log(this.bufferData[i]);
-    // this.bufferData[i] = 0xff - this.bufferData[i];
+transform.invert = function (dword) {
+  for (var i = 0; i < dword.length -1 ; i++) {
+    dword[i] = 0xff - dword[i];
   }
+  return dword;
 };
 
 module.exports = transform

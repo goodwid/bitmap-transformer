@@ -8,6 +8,7 @@ const outFile = 'new-palette-bitmap.bmp';
 fs.readFile(inFile, (err, buffer) => {
   const bitmap = new Bitmap(buffer);
   showData(bitmap);
+  // console.log(bitmap.buffer.toString('ascii'));
 });
 
 function Bitmap (buffer) {

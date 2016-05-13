@@ -1,23 +1,39 @@
 const fs = require('fs');
-const EventEmitter = require('events');
+// const EventEmitter = require('events');
+const transform = require('./transform');
 
 const inFile = 'palette-bitmap.bmp';
-const outFile = 'new-palette-bitmap.bmp';
+const outFile = 'invert-palette-bitmap.bmp';
 
+function Bitmap (buffer) {
+  this.bufferData = buffer;
+  this.PixelDataOffset = buffer.readInt32LE(10);
+  // this.imageWidth = buffer.readInt32LE(18);
+  // this.imageHeight = buffer.readInt32LE(22);
+  this.paletteMapOffset = 54;
+  // this.pixelBits = buffer.readInt16LE(28);
+  // this.pixeldata = buffer.readInt32LE(this.PixelDataOffset);
+  // this.invert = transform.invertDword;
+}
+
+Bitmap.prototype.modPalette = function() {
+  console.log('got here');
+  for (var i = 54; i < this.PixelDataOffset; i += 4) {
+    transform.invertDword(i);
+  }
+};
 
 fs.readFile(inFile, (err, buffer) => {
   const bitmap = new Bitmap(buffer);
-  showData(bitmap);
-  // console.log(bitmap.buffer.toString('ascii'));
+  // showData(bitmap);
+  bitmap.modPalette();
+  fs.writeFile(outFile, bitmap.bufferData, (err) => {
+    if (err) console.log(err);
+  });
 });
 
-function Bitmap (buffer) {
-  this.PixelDataOffset = buffer.readInt32LE(10);
-  this.imageWidth = buffer.readInt32LE(18);
-  this.imageHeight = buffer.readInt32LE(22);
-  this.pixelBits = buffer.readInt16LE(28);
-  this.pixeldata = buffer.readInt32LE(this.PixelDataOffset);
-}
+
+
 
 // for testing
 function showData(obj) {

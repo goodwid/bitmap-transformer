@@ -1,9 +1,9 @@
 const assert = require('assert');
 
-describe('', () => {
+describe('test', () => {
 
-  it('', () => {
+  it('passes', () => {
     assert(true);
-    
+
   });
 });

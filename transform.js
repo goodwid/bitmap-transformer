@@ -10,4 +10,4 @@ transform.invert = function (dword) {
   return dword;
 };
 
-module.exports = transform
+module.exports = transform;

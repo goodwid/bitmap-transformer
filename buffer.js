@@ -28,6 +28,6 @@ function transformBitmap (inFile, outFile, transformer) {
   });
 }
 
-transformBitmap(inFile, outFile, transform.invert);
+transformBitmap(inFile, outFile, transform.grayscale);
 
 module.exports = transformBitmap;

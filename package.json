@@ -11,12 +11,14 @@
     "url": "git+https://github.com/goodwid/bitmap-transformer.git"
   },
   "author": "David Goodwin <goodwid@gmail.com>",
-  "contributors":[{
-    "name": "Yvonne Hayes"
+  "contributors": [
+    {
+      "name": "Yvonne Hayes"
     },
     {
-    "name": "Kate Sowles"
-    }],
+      "name": "Kate Sowles"
+    }
+  ],
   "license": "MIT",
   "devDependencies": {
     "eslint": "^2.9.0",
@@ -28,5 +30,8 @@
   "bugs": {
     "url": "https://github.com/goodwid/bitmap-transformer/issues"
   },
-  "homepage": "https://github.com/goodwid/bitmap-transformer#readme"
+  "homepage": "https://github.com/goodwid/bitmap-transformer#readme",
+  "dependencies": {
+    "commander": "^2.9.0"
+  }
 }

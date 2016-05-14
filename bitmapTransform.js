@@ -1,8 +1,6 @@
 const fs = require('fs');
 const transform = require('./transform');
-
-// const inFile = 'palette-bitmap.bmp';
-// const outFile = 'transform-palette-bitmap.bmp';
+const bitmapTransform = {};
 
 function Bitmap (buffer) {
   this.bufferData = buffer;
@@ -18,25 +16,21 @@ Bitmap.prototype.modPalette = function(fn) {
   }
 };
 
-function transformBitmap(options) {
-  if (options.invert && options.greyscale) {
-    console.log('\n  error: Please select only one option.\n');
-    process.exit(1);
-  }
-  if (options.invert) options.transformer = transform.invert;
-  if (options.greyscale) options.transformer = transform.greyscale;
-  if (!options.transformer) {
+
+bitmapTransform.palette = function(options) {
+  var transformer = transform[options.transform];
+  if (!transformer) {
     console.log('\n  error: no transform option selected.\n');
     process.exit(1);
   }
 
   fs.readFile(options.I, (err, buffer) => {
     const bitmap = new Bitmap(buffer);
-    bitmap.modPalette(options.transformer);
+    bitmap.modPalette(transformer);
     fs.writeFile(options.O, bitmap.bufferData, (err) => {
       if (err) console.log(err);
     });
   });
-}
+};
 
-module.exports = transformBitmap;
+module.exports = bitmapTransform;

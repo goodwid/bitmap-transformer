@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var fd = require('./buffer.js');
+var bT = require('./bitmapTransform');
 var program = require('commander');
 
 
@@ -9,10 +9,10 @@ program
   // .usage ('')
   .option('-i <input>, --input', 'paletted bitmap to convert')
   .option('-o <output>, --output', 'output file')
-  .option('-t, --transform <method>', 'invert or greyscale', /^(invert|greyscale)$/i)
+  .option('-t, --transform <method>', 'invert or greyscale', 'invert')
   .parse(process.argv);
 
-console.log(fd);
-// fd.transformBitmap();
-console.log(typeof fd.transformBitmap);
-// console.log(program.I);
+
+// console.log(program);
+
+bT.palette(program);

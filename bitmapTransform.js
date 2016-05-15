@@ -17,7 +17,7 @@ Bitmap.prototype.modPalette = function(fn) {
 };
 
 
-bitmapTransform.palette = function(options) {
+bitmapTransform.palette = function(options, callback) {
   var transformer = transform[options.transform];
   if (!transformer) {
     console.log('\n  error: no transform option selected.\n');
@@ -29,6 +29,7 @@ bitmapTransform.palette = function(options) {
     bitmap.modPalette(transformer);
     fs.writeFile(options.O, bitmap.bufferData, (err) => {
       if (err) console.log(err);
+      if (callback) callback(err);
     });
   });
 };

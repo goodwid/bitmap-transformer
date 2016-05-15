@@ -1,5 +1,10 @@
 ## changelog for bitmap-transformer
 
+### 1.0.3 (2016-05-12)
+
+#### features:
+  - CLI completed.
+
 ### 1.0.2 (2016-05-12)
 
 #### features:

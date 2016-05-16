@@ -16,9 +16,9 @@ Bitmap.prototype.modPalette = function(fn) {
   }
 };
 
-
 bitmapTransform.palette = function(options, callback) {
-  var transformer = transform[options.transform];
+  const transformer = transform[options.transform];
+
   if (!transformer) {
     console.log('\n  error: no transform option selected.\n');
     process.exit(1);
